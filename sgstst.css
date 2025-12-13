@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+  outline: none;
+}
+
+body {
+  background-color: #212121;
+  font-family: 'Rubik';
+  color: #d3d3d3;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Основные контейнеры */
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Панель вкладок */
+nav {
+  position: fixed;
+  top: 12px;
+  left: 135px;
+  display: flex;
+  gap: 0.4rem;
+  background: #232323;
+  border: 1px solid #404042;
+  border-radius: 20px;
+  padding: 0.30rem;
+  z-index: 9999;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border-radius: 18px;
+  padding: 0.35rem 0.85rem;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.3s ease;
+  height: 38px;
+  color: #a7a7a7;
+}
+
+.button:hover {
+  background: #292929;
+}
+
+.button.active {
+  background: #313131;
+  color: #dadada;
+}
+
+/* Контент вкладок */
+.tab-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Панель инструментов */
+.buttons-panel {
+  position: absolute;
+  top: 64px;
+  left: 7px;
+  right: 7px;
+  height: 40px;
+  background: #232323;
+  border-radius: 12px;
+  border: 1px solid #4c4c4e;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.panel-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: none;
+  color: #c7c7c7;
+  background: transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+}
+
+.panel-button:hover {
+  color: #fff;
+}
+
+.panel-button-right {
+  margin-left: auto;
+}
+
+/* Контейнер AI чата */
+.ai-chat-container {
+  position: absolute;
+  top: 64px;
+  left: 5px;
+  right: 5px;
+  bottom: 94px;
+  background: #232323;
+  border: 1px solid #4c4c4e;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-container {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
+}
+
+.user-message {
+  align-self: flex-end;
+  background: #272727;
+  border: 1px solid #404042;
+  color: #ffffff;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background: #292929;
+  border: 1px solid #404042;
+  color: #c7c7c7;
+}
+
+/* Поле ввода */
+.input-area {
+  padding: 15px;
+  background: #272727;
+  border-top: 1px solid #404042;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  border-radius: 32px;
+  color: #ffffff;
+  font-family: 'Rubik';
+  font-size: 16px;
+}
+
+.send-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: #292929;
+  color: #c7c7c7;
+  border: 1px solid #38383a;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 44px;
+  height: 44px;
+}
+
+.send-button:hover {
+  background: #313131;
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Индикатор набора текста */
+.typing-indicator {
+  display: flex;
+  align-self: flex-start;
+  padding: 20px;
+  align-items: center;
+  gap: 5px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #8c929c;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Полоса прокрутки */
+.messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background-color: #3a3f40;
+  border-radius: 4px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background-color: #4a4f50;
+}
+
+/* Контейнер аккаунта */
+.account-container {
+  position: absolute;
+  top: 64px;
+  left: 7px;
+  right: 7px;
+  bottom: 30px;
+  background: #232323;
+  border: 1px solid #4c4c4e;
+  border-radius: 14px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Код в сообщениях */
+.message pre {
+  margin: 12px 0;
+  border-radius: 12px;
+  overflow-x: auto;
+  background: #272727;
+  border: 1px solid #4c4c4e;
+  padding: 15px;
+}
+
+.message pre code {
+  padding: 16px;
+  font-family: "Rubik";
+  font-size: 14px;
+  line-height: 1.5;
+  display: block;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 768px) {
+  nav {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .buttons-panel {
+    padding: 0 5px;
+  }
+  
+  .panel-button {
+    padding: 0.25rem;
+    font-size: 0.75rem;
+  }
+}
